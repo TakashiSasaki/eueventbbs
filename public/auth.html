@@ -1,0 +1,37 @@
+<html>
+<head>
+</head>
+<body>
+  <button onclick="facebook_login()">Facebook login</button>
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-auth.js"></script>
+<script>
+  var config = {
+    apiKey: "AIzaSyA4bIhw8dH41nroHMerLYU1uWFDUKOLL6E",
+    authDomain: "eueventbbs.firebaseapp.com",
+    databaseURL: "https://eueventbbs.firebaseio.com",
+    projectId: "eueventbbs",
+    storageBucket: "eueventbbs.appspot.com",
+    messagingSenderId: "744957393538"
+  };
+  firebase.initializeApp(config);
+
+function facebook_login(){
+  var facebook_auth_provider = new firebase.auth.FacebookAuthProvider();
+  //facebook_auth_provider.addScope("user_birthdat");
+  //facebook_auth_provider.setCustomParameters({
+  //  'display': 'popup'
+  //});
+  firebase.auth().signInWithPopup(facebook_auth_provider).then(function(result){
+    var user = result.user;
+    alert("Hello " +  user.displayName);
+  }).catch(function(error){
+    alert(error);
+  }); 
+}
+
+</script>
+</body>
+</html>
+
